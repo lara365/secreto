@@ -1,12 +1,24 @@
-projetos/test_models.py
 from django.test import TestCase
-from .models import Participantes 
+from .models import Grupo
+from datetime import date
 
-class ParticipanteModelTest(TestCase):
-    def test_criacao_projeto(self):
-        projeto = Projeto.objects.create(nome='Novo Website', descricao='Descrição do projeto.')
-        self.assertEqual(projeto.nome, 'Novo Website')
-    
+class GrupoModelTest(TestCase):
+
+    def test_criacao_grupo(self):
+        grupo = Grupo.objects.create(
+            nome='Amigo Secreto da Família',
+            descricao='Grupo criado para o Natal',
+            data_sorteio=date(2025, 12, 25),
+            valor_limite=100
+        )
+        self.assertEqual(grupo.nome, 'Amigo Secreto da Família')
+        self.assertEqual(grupo.valor_limite, 100)
+
     def test_str_representation(self):
-        projeto = Projeto.objects.create(nome='Nome para Teste Str')
-        self.assertEqual(str(projeto), 'Nome para Teste Str')
+        grupo = Grupo.objects.create(
+            nome='Grupo de Teste',
+            descricao='Teste',
+            data_sorteio=date(2025, 12, 20),
+            valor_limite=50
+        )
+        self.assertEqual(str(grupo), 'Grupo de Teste')

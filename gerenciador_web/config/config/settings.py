@@ -37,8 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'secreto.apps,SecretoConfig',
+    'amigo_secreto.apps.AmigoSecretoConfig',
+
+
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -97,6 +100,12 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
+]
+
+STATIC_URL = 'static/'
+ 
+STATICFILES_DIRS = [
+    BASE_DIR / "amigo_secreto/static",
 ]
 
 
