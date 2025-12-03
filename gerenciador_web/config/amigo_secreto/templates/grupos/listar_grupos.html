@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Grupos Disponíveis</h2>
+    
+    <a href="{% url 'criar_grupo' %}" class="btn btn-success">+ Criar Novo Grupo</a>
+    
+    <ul class="participant-list">
+        {% for grupo in grupos %}
+            <li>
+                <div>
+                    <strong>{{ grupo.nome }}</strong>
+                    <br>
+                    <small>Sorteio: {{ grupo.data_sorteio|date:"d/m/Y" }} | Valor: R$ {{ grupo.valor_limite }}</small>
+                </div>
+                <div>
+                    <a href="{% url 'detalhe_grupo' grupo.id %}" class="btn btn-primary" style="display:inline; padding: 5px 10px; font-size: 0.8rem;">Ver Detalhes</a>
+                    <a href="{% url 'entrar_no_grupo' grupo.id %}" class="btn btn-outline" style="display:inline; padding: 5px 10px; font-size: 0.8rem;">Participar</a>
+                </div>
+            </li>
+        {% empty %}
+            <p style="text-align:center; margin-top:20px;">Nenhum grupo cadastrado ainda.</p>
+        {% endfor %}
+    </ul>
+{% endblock %}

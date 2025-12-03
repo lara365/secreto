@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>{{ grupo.nome }}</h2>
+    <p><strong>Data do Sorteio:</strong> {{ grupo.data_sorteio }}</p>
+    <p><strong>Valor Limite:</strong> R$ {{ grupo.valor_limite }}</p>
+
+    <hr>
+
+    <h3>Participantes ({{ participantes.count }})</h3>
+    
+    <ul class="participant-list">
+        {% for p in participantes %}
+            <li>
+                <span>{{ p.nome }} ({{ p.login }})</span>
+                
+                <a href="{% url 'cadastrar_lista_desejos' p.id %}" style="font-size: 0.8rem; color: #3498db;">Add Desejos</a>
+            </li>
+        {% empty %}
+            <li>Ninguém entrou neste grupo ainda.</li>
+        {% endfor %}
+    </ul>
+
+    <div style="margin-top: 30px;">
+    
+        {% if ja_sorteado %}
+            <div style="background-color: #d4edda; color: #155724; padding: 15px; border-radius: 5px; border: 1px solid #c3e6cb;">
+                ✅ <strong>Sorteio Realizado!</strong><br>
+                Os participantes já foram definidos.
+            </div>
+    
+            <ul style="margin-top: 10px; color: #555;">
+                {% for sorteio in sorteios %}
+                    <li>🤫 {{ sorteio.quem_tirou.nome }} tirou {{ sorteio.amigo.nome }}</li>
+                {% endfor %}
+            </ul>
+    
+        {% else %}
+            <a href="{% url 'entrar_no_grupo' grupo.id %}" class="btn btn-outline">Entrar neste Grupo</a>
+            
+            {% if participantes.count >= 2 %}
+                <a href="{% url 'sortear_amigo_secreto' grupo.id %}" class="btn btn-success">🎲 Realizar Sorteio Agora</a>
+            {% else %}
+                <button class="btn btn-success" disabled style="opacity: 0.5;">🎲 Necessário min. 2 pessoas</button>
+            {% endif %}
+        {% endif %}
+    
+    </div>
+{% endblock %}

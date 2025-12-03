@@ -51,11 +51,22 @@ def cadastrar_lista_desejos(request, participante_id):
     return render(request, "desejos/form_lista_desejos.html", {"form": form, "participante": participante})
 
 
+# Em tests_views.py
+
 def detalhe_grupo(request, grupo_id):
     grupo = get_object_or_404(Grupo, id=grupo_id)
     participantes = Participante.objects.filter(grupo=grupo)
-    return render(request, "grupos/detalhe_grupo.html", {"grupo": grupo, "participantes": participantes})
-
+    
+    # NOVO: Verifica se já existem sorteios para este grupo
+    sorteios = Sorteio.objects.filter(grupo=grupo)
+    ja_sorteado = sorteios.exists()
+    
+    return render(request, "grupos/detalhe_grupo.html", {
+        "grupo": grupo, 
+        "participantes": participantes,
+        "ja_sorteado": ja_sorteado, # Mandamos essa informação para o HTML
+        "sorteios": sorteios        # Mandamos a lista (opcional, para o admin ver)
+    })
 
 def sortear_amigo_secreto(request, grupo_id):
     grupo = get_object_or_404(Grupo, id=grupo_id)
@@ -68,9 +79,13 @@ def sortear_amigo_secreto(request, grupo_id):
     random.shuffle(participantes)
 
     for i, p in enumerate(participantes):
-        amigo_secreto = participantes[(i + 1) % len(participantes)]
+        amigo_secreto_sorteado = participantes[(i + 1) % len(participantes)]
+        
+        # CORREÇÃO AQUI: Usar 'quem_tirou' e 'amigo' conforme o models.py
         Sorteio.objects.create(
             grupo=grupo,
-            participante=p,
-            amigo_secreto=amigo_s
+            quem_tirou=p,              # Antes estava 'participante'
+            amigo=amigo_secreto_sorteado # Antes estava 'amigo_secreto'
         )
+        
+    return redirect("detalhe_grupo", grupo_id=grupo.id)

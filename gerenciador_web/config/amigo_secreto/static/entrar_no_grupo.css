@@ -1,0 +1,58 @@
+h2 + p {
+    color: #666;
+    font-size: 0.95rem;
+    margin-top: -10px; /* Aproxima do título */
+    margin-bottom: 25px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+}
+
+/* Garante que os campos do formulário fiquem bonitos */
+.form-group {
+    background-color: #fcfcfc; /* Fundo levemente diferente para o form */
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+/* Remove margens extras dos parágrafos do Django */
+.form-group p {
+    margin-bottom: 15px;
+}
+
+/* Deixa os Labels (Nome, Email) em negrito e acima do campo */
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+/* Estilo dos Inputs (Caixas de texto) */
+.form-group input[type="text"],
+.form-group input[type="email"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-sizing: border-box; /* Importante para não estourar a largura */
+    transition: border 0.3s;
+}
+
+/* Cor da borda muda quando clica */
+.form-group input:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+/* Botão "Confirmar Participação" */
+button[type="submit"] {
+    width: 100%; /* Botão grande e fácil de clicar */
+    padding: 12px;
+    font-size: 1.05rem;
+    margin-top: 15px;
+    font-weight: bold;
+    text-transform: uppercase; /* Letras maiúsculas para destaque */
+    letter-spacing: 0.5px;
+}

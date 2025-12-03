@@ -1,0 +1,65 @@
+
+
+
+.group-info p {
+    font-size: 1.05rem;
+    color: #444;
+    margin: 8px 0;
+}
+
+
+.add-wishes-btn {
+    font-size: 0.8rem;
+    color: #3498db;
+    border: 1px solid #3498db;
+    padding: 4px 10px;
+    border-radius: 20px; /* Borda bem redonda */
+    transition: background 0.2s;
+}
+
+.add-wishes-btn:hover {
+    background-color: #3498db;
+    color: white;
+    text-decoration: none;
+}
+
+/* Caixa Verde de Sucesso (Sorteio Realizado) */
+.alert-success-box {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #c3e6cb;
+    text-align: center;
+    margin-top: 25px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* Lista de quem tirou quem (Resultado) */
+.result-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 15px;
+    background-color: #fafafa;
+    border: 1px dashed #ccc; /* Borda tracejada parecendo recibo */
+    border-radius: 8px;
+}
+
+.result-list li {
+    padding: 12px 15px;
+    border-bottom: 1px dashed #ddd;
+    color: #555;
+    font-size: 0.95rem;
+}
+
+.result-list li:last-child {
+    border-bottom: none;
+}
+
+/* Botões de Ação na parte inferior */
+.group-actions {
+    margin-top: 30px;
+    display: flex;
+    gap: 10px; /* Espaço entre os botões */
+    flex-wrap: wrap;
+}

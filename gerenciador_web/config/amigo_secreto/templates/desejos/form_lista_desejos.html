@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Lista de Desejos de {{ participante.nome }}</h2>
+    
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.as_p }}
+        </div>
+        <button type="submit" class="btn btn-success">Adicionar Item</button>
+    </form>
+    
+    <br>
+    <a href="{% url 'detalhe_grupo' participante.grupo.id %}" class="back-link">Voltar para o Grupo</a>
+{% endblock %}
